@@ -19,4 +19,6 @@
           * If the credit score is missing for the client then the application does not qualify
 ## Testing
 ### POSTMAN
-
+Head over to the [Postman](https://www.postman.com/mission-cosmonaut-85691545/workspace/phoenix-demo/overview) testing workspace for this project. 
+Set the Environment to Demo
+There you should find 4 request examples that return JSON responses
