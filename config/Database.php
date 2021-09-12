@@ -1,0 +1,22 @@
+<?php 
+  class Database {
+    // DB Params
+    private $host = '192.168.1.10';
+    private $db_name = 'Phoenix';
+    private $username = 'phoenix';
+    private $password = 'Se7FMuv&XTC*SuB';
+    private $conn;
+
+    // DB Connect
+    public function connect() {
+      $this->conn = null;
+      try { 
+        $this->conn = new PDO('mysql:host=' . $this->host . ':3307;dbname=' . $this->db_name, $this->username, $this->password);
+        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      } catch(PDOException $e) {
+        echo 'Connection Error: ' . $e->getMessage();
+      }
+
+      return $this->conn;
+    }
+  }
