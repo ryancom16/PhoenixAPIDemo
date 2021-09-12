@@ -10,11 +10,16 @@ include_once '../../models/applications.php';
 $database = new Database();
 $db = $database->connect();
 
-// Instantiate blog clients object
+// Instantiate applications object
 $applications = new applications($db);
 
-// Clients query
-$result = $applications->read();
+// Applications query
+if (isset($_GET['search'])) {
+  $applications->search = $_GET['search'];
+  $result = $applications->search();
+} else {
+  $result = $applications->read();
+}
 
 // Get Total
 $num = $result->rowCount();
