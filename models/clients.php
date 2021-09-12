@@ -3,7 +3,7 @@ class clients
 {
   // DB stuff
   private $conn;
-  
+
   // Public Properties
   public $search;
 
@@ -77,86 +77,11 @@ class clients
 
     // Set Bind Params
     $bind = "%" . $this->search . "%";
-    echo $bind;
     $stmt->bindParam(':search', $bind);
 
     // Execute query
     $stmt->execute();
 
     return $stmt;
-  }
-
-  //Get All Applications
-  public function clients()
-  {
-    // Create query
-    $query = 'SELECT c.flngID, c.fstrFirstName, c.fstrLastName, c.fstrEmail
-              FROM tblClients c
-              ORDER BY
-              c.flngID';
-
-    // Prepare statement
-    $stmt = $this->conn->prepare($query);
-
-    // Execute query
-    $stmt->execute();
-
-    return $stmt;
-  }
-  public function clientsWithApps()
-  {
-    // Create query
-    $query = 'SELECT c.flngID, c.fstrFirstName, c.fstrLastName, c.fstrEmail
-              FROM tblClients c
-              WHERE EXISTS (SELECT 1 
-                            FROM tblApplications a 
-                            WHERE a.flngClientID = c.flngID)
-              ORDER BY
-              c.flngID DESC';
-
-    // Prepare statement
-    $stmt = $this->conn->prepare($query);
-
-    // Execute query
-    $stmt->execute();
-
-    return $stmt;
-  }
-  public function clientsMissingCredit()
-  {
-    // Create query
-    $query = 'SELECT c.flngID, c.fstrFirstName, c.fstrLastName, c.fstrEmail
-              FROM tblClients c
-              WHERE NOT EXISTS (SELECT 1 
-                                FROM tblCredit d 
-                                WHERE d.flngClientID = c.flngID)
-              ORDER BY
-              c.flngID DESC';
-
-    // Prepare statement
-    $stmt = $this->conn->prepare($query);
-
-    // Execute query
-    $stmt->execute();
-
-    return $stmt;
-  }
-
-  //Get Total # QualifyingApplications
-  public function averageCreditScore()
-  {
-    //Create query
-    $query = 'SELECT AVG(d.fintCreditScore) fdblAverage  FROM tblClients c 
-              JOIN tblCredit d on d.flngClientID = c.flngID';
-
-    // Prepare statement
-    $stmt = $this->conn->prepare($query);
-
-    // Execute query
-    $stmt->execute();
-
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    return $row['fdblAverage'];
   }
 }
