@@ -38,6 +38,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     'ID' => $flngID,
     'FirstName' => $fstrFirstName,
     'LastName' => $fstrLastName,
+    'Email' => $fstrEmail,
     'CreditScore' => $fintCreditScore,
     'AnnualIncome' => $flngAnnualIncome,
     'MonthlyDebt' => $flngMonthlyDebt,
