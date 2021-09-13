@@ -20,6 +20,7 @@ class applications
     $query = 'SELECT c.flngID
                   ,c.fstrFirstName
                   ,c.fstrLastName
+                  ,c.fstrEmail
                   ,d.fintCreditScore
                   ,a.flngAnnualIncome
                   ,a.flngMonthlyDebt
@@ -43,6 +44,7 @@ class applications
     $query = 'SELECT c.flngID
                   ,c.fstrFirstName
                   ,c.fstrLastName
+                  ,c.fstrEmail
                   ,d.fintCreditScore
                   ,a.flngAnnualIncome
                   ,a.flngMonthlyDebt
